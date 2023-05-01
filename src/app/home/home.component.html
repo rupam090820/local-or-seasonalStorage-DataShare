@@ -1,0 +1,52 @@
+<form [formGroup]="myForm">
+
+
+
+    <div class="form-group">
+      <label>NAME:-</label>
+      <input type="text" formControlName="name" class="form-control"
+        [class.is-invalid]="name.invalid && (name.dirty||name.touched)"><br>
+  
+      <section *ngIf="name.invalid && (name.dirty||name.touched)">
+        <small class="text-danger" *ngIf="name.errors?.['required']">name is Required</small>
+        <small class="text-danger" *ngIf="name.errors?.['pattern']">Pattern is in-valid.. space,number,special charecter
+          are not allowed
+        </small>
+      </section>
+    </div>
+  
+    <div class="form-group">
+      <label>EMAIL:-</label>
+      <input type="email" class="form-control" formControlName="email"
+        [class.is-invalid]="email.invalid && (email.dirty||email.touched)"><br>
+  
+      <section *ngIf="email.invalid && (email.dirty||email.touched)">
+        <small class="text-danger" *ngIf="email.errors?.['required']">EMAIL IS Required.....</small>
+        <small class="text-danger" *ngIf="email.errors?.['pattern']">Please follow the email Pattern.....</small>
+      </section>
+    </div>
+  
+    <div class="form-group">
+      <label>MOBILE:-</label>
+      <input type="number" class="form-control" formControlName="number"
+        [class.is-invalid]="email.invalid && (number.dirty||number.touched)"><br>
+  
+      <section *ngIf="number.invalid && (number.dirty||number.touched)">
+        <small class="text-danger" *ngIf="number.errors?.['required']">MOBILE NUMBER IS Required.....</small>
+        <small class="text-danger" *ngIf="number.errors?.['pattern']">Only Type 10 Digit No.....</small>
+      </section>
+    </div>
+  
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" formControlName="acceptTerms"
+        [class.is-invalid]="acceptTerms.invalid && (acceptTerms.dirty||acceptTerms.touched)">
+      <label> Accept terms and Condition!!</label>
+      <section *ngIf="acceptTerms.invalid && (acceptTerms.dirty||acceptTerms.touched)">
+        <small class="text-danger" *ngIf="acceptTerms.errors?.['required']">Please Accepts Terms and Condition....</small>
+      </section>
+    </div>
+  
+    <button class="btn btn-sm btn-danger" [disabled]=!myForm.valid (click)="send()">SUBMIT</button>
+  
+  </form>
+  
